@@ -1,0 +1,161 @@
+[2021-11-01 02:31:24,756] {taskinstance.py:1035} INFO - Dependencies all met for <TaskInstance: my_dag.readcsv manual__2021-11-01T02:31:21.734923+00:00 [queued]>
+[2021-11-01 02:31:24,765] {taskinstance.py:1035} INFO - Dependencies all met for <TaskInstance: my_dag.readcsv manual__2021-11-01T02:31:21.734923+00:00 [queued]>
+[2021-11-01 02:31:24,765] {taskinstance.py:1241} INFO - 
+--------------------------------------------------------------------------------
+[2021-11-01 02:31:24,765] {taskinstance.py:1242} INFO - Starting attempt 1 of 1
+[2021-11-01 02:31:24,765] {taskinstance.py:1243} INFO - 
+--------------------------------------------------------------------------------
+[2021-11-01 02:31:24,779] {taskinstance.py:1262} INFO - Executing <Task(PythonOperator): readcsv> on 2021-11-01 02:31:21.734923+00:00
+[2021-11-01 02:31:24,826] {standard_task_runner.py:52} INFO - Started process 2821 to run task
+[2021-11-01 02:31:24,829] {standard_task_runner.py:76} INFO - Running: ['***', 'tasks', 'run', 'my_dag', 'readcsv', 'manual__2021-11-01T02:31:21.734923+00:00', '--job-id', '101', '--raw', '--subdir', 'DAGS_FOLDER/checkModel.py', '--cfg-path', '/tmp/tmpfmga401e', '--error-file', '/tmp/tmpdld52pu_']
+[2021-11-01 02:31:24,830] {standard_task_runner.py:77} INFO - Job 101: Subtask readcsv
+[2021-11-01 02:31:24,867] {logging_mixin.py:109} INFO - Running <TaskInstance: my_dag.readcsv manual__2021-11-01T02:31:21.734923+00:00 [running]> on host 93c37aa78767
+[2021-11-01 02:31:24,903] {taskinstance.py:1429} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=my_dag
+AIRFLOW_CTX_TASK_ID=readcsv
+AIRFLOW_CTX_EXECUTION_DATE=2021-11-01T02:31:21.734923+00:00
+AIRFLOW_CTX_DAG_RUN_ID=manual__2021-11-01T02:31:21.734923+00:00
+[2021-11-01 02:31:24,926] {taskinstance.py:1703} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1257, in _execute_context
+    cursor, statement, parameters, context
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/dialects/postgresql/psycopg2.py", line 912, in do_executemany
+    cursor.executemany(statement, parameters)
+psycopg2.errors.UndefinedColumn: column "PassengerId" of relation "passengers" does not exist
+LINE 1: INSERT INTO passengers ("PassengerId", "Pclass", "Name", "Se...
+                                ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/taskinstance.py", line 1332, in _run_raw_task
+    self._execute_task_with_callbacks(context)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/taskinstance.py", line 1458, in _execute_task_with_callbacks
+    result = self._execute_task(context, self.task)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/taskinstance.py", line 1514, in _execute_task
+    result = execute_callable(context=context)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 151, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 162, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/checkModel.py", line 25, in readCsv
+    df.to_sql('passengers', con=engine, if_exists='append', index=False)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/core/generic.py", line 2882, in to_sql
+    method=method,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 728, in to_sql
+    **engine_kwargs,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 1770, in to_sql
+    **engine_kwargs,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 1350, in insert_records
+    raise err
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 1340, in insert_records
+    table.insert(chunksize=chunksize, method=method)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 967, in insert
+    exec_insert(conn, keys, chunk_iter)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 882, in _execute_insert
+    conn.execute(self.table.insert(), data)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1011, in execute
+    return meth(self, multiparams, params)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/sql/elements.py", line 298, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1130, in _execute_clauseelement
+    distilled_params,
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1317, in _execute_context
+    e, statement, parameters, cursor, context
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1511, in _handle_dbapi_exception
+    sqlalchemy_exception, with_traceback=exc_info[2], from_=e
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1257, in _execute_context
+    cursor, statement, parameters, context
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/dialects/postgresql/psycopg2.py", line 912, in do_executemany
+    cursor.executemany(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedColumn) column "PassengerId" of relation "passengers" does not exist
+LINE 1: INSERT INTO passengers ("PassengerId", "Pclass", "Name", "Se...
+                                ^
+
+[SQL: INSERT INTO passengers ("PassengerId", "Pclass", "Name", "Sex", "Age", "SibSp", "Parch", "Ticket", "Fare", "Cabin", "Embarked") VALUES (%(PassengerId)s, %(Pclass)s, %(Name)s, %(Sex)s, %(Age)s, %(SibSp)s, %(Parch)s, %(Ticket)s, %(Fare)s, %(Cabin)s, %(Embarked)s)]
+[parameters: ({'PassengerId': 892, 'Pclass': 3, 'Name': 'Kelly, Mr. James', 'Sex': 'male', 'Age': 34.5, 'SibSp': 0, 'Parch': 0, 'Ticket': '330911', 'Fare': 7.8292, 'Cabin': None, 'Embarked': 'Q'}, {'PassengerId': 893, 'Pclass': 3, 'Name': 'Wilkes, Mrs. James (Ellen Needs)', 'Sex': 'female', 'Age': 47.0, 'SibSp': 1, 'Parch': 0, 'Ticket': '363272', 'Fare': 7.0, 'Cabin': None, 'Embarked': 'S'}, {'PassengerId': 894, 'Pclass': 2, 'Name': 'Myles, Mr. Thomas Francis', 'Sex': 'male', 'Age': 62.0, 'SibSp': 0, 'Parch': 0, 'Ticket': '240276', 'Fare': 9.6875, 'Cabin': None, 'Embarked': 'Q'}, {'PassengerId': 895, 'Pclass': 3, 'Name': 'Wirz, Mr. Albert', 'Sex': 'male', 'Age': 27.0, 'SibSp': 0, 'Parch': 0, 'Ticket': '315154', 'Fare': 8.6625, 'Cabin': None, 'Embarked': 'S'}, {'PassengerId': 896, 'Pclass': 3, 'Name': 'Hirvonen, Mrs. Alexander (Helga E Lindqvist)', 'Sex': 'female', 'Age': 22.0, 'SibSp': 1, 'Parch': 1, 'Ticket': '3101298', 'Fare': 12.2875, 'Cabin': None, 'Embarked': 'S'}, {'PassengerId': 897, 'Pclass': 3, 'Name': 'Svensson, Mr. Johan Cervin', 'Sex': 'male', 'Age': 14.0, 'SibSp': 0, 'Parch': 0, 'Ticket': '7538', 'Fare': 9.225, 'Cabin': None, 'Embarked': 'S'}, {'PassengerId': 898, 'Pclass': 3, 'Name': 'Connolly, Miss. Kate', 'Sex': 'female', 'Age': 30.0, 'SibSp': 0, 'Parch': 0, 'Ticket': '330972', 'Fare': 7.6292, 'Cabin': None, 'Embarked': 'Q'}, {'PassengerId': 899, 'Pclass': 2, 'Name': 'Caldwell, Mr. Albert Francis', 'Sex': 'male', 'Age': 26.0, 'SibSp': 1, 'Parch': 1, 'Ticket': '248738', 'Fare': 29.0, 'Cabin': None, 'Embarked': 'S'}  ... displaying 10 of 418 total bound parameter sets ...  {'PassengerId': 1308, 'Pclass': 3, 'Name': 'Ware, Mr. Frederick', 'Sex': 'male', 'Age': None, 'SibSp': 0, 'Parch': 0, 'Ticket': '359309', 'Fare': 8.05, 'Cabin': None, 'Embarked': 'S'}, {'PassengerId': 1309, 'Pclass': 3, 'Name': 'Peter, Master. Michael J', 'Sex': 'male', 'Age': None, 'SibSp': 1, 'Parch': 1, 'Ticket': '2668', 'Fare': 22.3583, 'Cabin': None, 'Embarked': 'C'})]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+[2021-11-01 02:31:24,940] {taskinstance.py:1280} INFO - Marking task as FAILED. dag_id=my_dag, task_id=readcsv, execution_date=20211101T023121, start_date=20211101T023124, end_date=20211101T023124
+[2021-11-01 02:31:24,951] {standard_task_runner.py:91} ERROR - Failed to execute job 101 for task readcsv
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1257, in _execute_context
+    cursor, statement, parameters, context
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/dialects/postgresql/psycopg2.py", line 912, in do_executemany
+    cursor.executemany(statement, parameters)
+psycopg2.errors.UndefinedColumn: column "PassengerId" of relation "passengers" does not exist
+LINE 1: INSERT INTO passengers ("PassengerId", "Pclass", "Name", "Se...
+                                ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/task/task_runner/standard_task_runner.py", line 85, in _start_by_fork
+    args.func(args, dag=self.dag)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/cli/cli_parser.py", line 48, in command
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/utils/cli.py", line 92, in wrapper
+    return f(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/cli/commands/task_command.py", line 292, in task_run
+    _run_task_by_selected_method(args, dag, ti)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/cli/commands/task_command.py", line 107, in _run_task_by_selected_method
+    _run_raw_task(args, ti)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/cli/commands/task_command.py", line 184, in _run_raw_task
+    error_file=args.error_file,
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/utils/session.py", line 70, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/taskinstance.py", line 1332, in _run_raw_task
+    self._execute_task_with_callbacks(context)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/taskinstance.py", line 1458, in _execute_task_with_callbacks
+    result = self._execute_task(context, self.task)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/taskinstance.py", line 1514, in _execute_task
+    result = execute_callable(context=context)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 151, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 162, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/checkModel.py", line 25, in readCsv
+    df.to_sql('passengers', con=engine, if_exists='append', index=False)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/core/generic.py", line 2882, in to_sql
+    method=method,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 728, in to_sql
+    **engine_kwargs,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 1770, in to_sql
+    **engine_kwargs,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 1350, in insert_records
+    raise err
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 1340, in insert_records
+    table.insert(chunksize=chunksize, method=method)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 967, in insert
+    exec_insert(conn, keys, chunk_iter)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 882, in _execute_insert
+    conn.execute(self.table.insert(), data)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1011, in execute
+    return meth(self, multiparams, params)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/sql/elements.py", line 298, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1130, in _execute_clauseelement
+    distilled_params,
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1317, in _execute_context
+    e, statement, parameters, cursor, context
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1511, in _handle_dbapi_exception
+    sqlalchemy_exception, with_traceback=exc_info[2], from_=e
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1257, in _execute_context
+    cursor, statement, parameters, context
+  File "/home/airflow/.local/lib/python3.7/site-packages/sqlalchemy/dialects/postgresql/psycopg2.py", line 912, in do_executemany
+    cursor.executemany(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedColumn) column "PassengerId" of relation "passengers" does not exist
+LINE 1: INSERT INTO passengers ("PassengerId", "Pclass", "Name", "Se...
+                                ^
+
+[SQL: INSERT INTO passengers ("PassengerId", "Pclass", "Name", "Sex", "Age", "SibSp", "Parch", "Ticket", "Fare", "Cabin", "Embarked") VALUES (%(PassengerId)s, %(Pclass)s, %(Name)s, %(Sex)s, %(Age)s, %(SibSp)s, %(Parch)s, %(Ticket)s, %(Fare)s, %(Cabin)s, %(Embarked)s)]
+[parameters: ({'PassengerId': 892, 'Pclass': 3, 'Name': 'Kelly, Mr. James', 'Sex': 'male', 'Age': 34.5, 'SibSp': 0, 'Parch': 0, 'Ticket': '330911', 'Fare': 7.8292, 'Cabin': None, 'Embarked': 'Q'}, {'PassengerId': 893, 'Pclass': 3, 'Name': 'Wilkes, Mrs. James (Ellen Needs)', 'Sex': 'female', 'Age': 47.0, 'SibSp': 1, 'Parch': 0, 'Ticket': '363272', 'Fare': 7.0, 'Cabin': None, 'Embarked': 'S'}, {'PassengerId': 894, 'Pclass': 2, 'Name': 'Myles, Mr. Thomas Francis', 'Sex': 'male', 'Age': 62.0, 'SibSp': 0, 'Parch': 0, 'Ticket': '240276', 'Fare': 9.6875, 'Cabin': None, 'Embarked': 'Q'}, {'PassengerId': 895, 'Pclass': 3, 'Name': 'Wirz, Mr. Albert', 'Sex': 'male', 'Age': 27.0, 'SibSp': 0, 'Parch': 0, 'Ticket': '315154', 'Fare': 8.6625, 'Cabin': None, 'Embarked': 'S'}, {'PassengerId': 896, 'Pclass': 3, 'Name': 'Hirvonen, Mrs. Alexander (Helga E Lindqvist)', 'Sex': 'female', 'Age': 22.0, 'SibSp': 1, 'Parch': 1, 'Ticket': '3101298', 'Fare': 12.2875, 'Cabin': None, 'Embarked': 'S'}, {'PassengerId': 897, 'Pclass': 3, 'Name': 'Svensson, Mr. Johan Cervin', 'Sex': 'male', 'Age': 14.0, 'SibSp': 0, 'Parch': 0, 'Ticket': '7538', 'Fare': 9.225, 'Cabin': None, 'Embarked': 'S'}, {'PassengerId': 898, 'Pclass': 3, 'Name': 'Connolly, Miss. Kate', 'Sex': 'female', 'Age': 30.0, 'SibSp': 0, 'Parch': 0, 'Ticket': '330972', 'Fare': 7.6292, 'Cabin': None, 'Embarked': 'Q'}, {'PassengerId': 899, 'Pclass': 2, 'Name': 'Caldwell, Mr. Albert Francis', 'Sex': 'male', 'Age': 26.0, 'SibSp': 1, 'Parch': 1, 'Ticket': '248738', 'Fare': 29.0, 'Cabin': None, 'Embarked': 'S'}  ... displaying 10 of 418 total bound parameter sets ...  {'PassengerId': 1308, 'Pclass': 3, 'Name': 'Ware, Mr. Frederick', 'Sex': 'male', 'Age': None, 'SibSp': 0, 'Parch': 0, 'Ticket': '359309', 'Fare': 8.05, 'Cabin': None, 'Embarked': 'S'}, {'PassengerId': 1309, 'Pclass': 3, 'Name': 'Peter, Master. Michael J', 'Sex': 'male', 'Age': None, 'SibSp': 1, 'Parch': 1, 'Ticket': '2668', 'Fare': 22.3583, 'Cabin': None, 'Embarked': 'C'})]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+[2021-11-01 02:31:24,961] {local_task_job.py:154} INFO - Task exited with return code 1
+[2021-11-01 02:31:24,990] {local_task_job.py:264} INFO - 0 downstream tasks scheduled from follow-on schedule check

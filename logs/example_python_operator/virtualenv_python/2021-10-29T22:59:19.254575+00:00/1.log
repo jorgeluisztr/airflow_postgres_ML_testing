@@ -1,0 +1,57 @@
+[2021-10-29 22:59:20,358] {taskinstance.py:1035} INFO - Dependencies all met for <TaskInstance: example_python_operator.virtualenv_python manual__2021-10-29T22:59:19.254575+00:00 [queued]>
+[2021-10-29 22:59:20,372] {taskinstance.py:1035} INFO - Dependencies all met for <TaskInstance: example_python_operator.virtualenv_python manual__2021-10-29T22:59:19.254575+00:00 [queued]>
+[2021-10-29 22:59:20,372] {taskinstance.py:1241} INFO - 
+--------------------------------------------------------------------------------
+[2021-10-29 22:59:20,372] {taskinstance.py:1242} INFO - Starting attempt 1 of 1
+[2021-10-29 22:59:20,372] {taskinstance.py:1243} INFO - 
+--------------------------------------------------------------------------------
+[2021-10-29 22:59:20,384] {taskinstance.py:1262} INFO - Executing <Task(PythonVirtualenvOperator): virtualenv_python> on 2021-10-29 22:59:19.254575+00:00
+[2021-10-29 22:59:20,389] {standard_task_runner.py:76} INFO - Running: ['***', 'tasks', 'run', 'example_python_operator', 'virtualenv_python', 'manual__2021-10-29T22:59:19.254575+00:00', '--job-id', '32', '--raw', '--subdir', '/home/***/.local/lib/python3.6/site-packages/***/example_dags/example_python_operator.py', '--cfg-path', '/tmp/tmp13ja_g4v', '--error-file', '/tmp/tmp3z_1ncel']
+[2021-10-29 22:59:20,390] {standard_task_runner.py:77} INFO - Job 32: Subtask virtualenv_python
+[2021-10-29 22:59:20,387] {standard_task_runner.py:52} INFO - Started process 248 to run task
+[2021-10-29 22:59:20,416] {logging_mixin.py:109} INFO - Running <TaskInstance: example_python_operator.virtualenv_python manual__2021-10-29T22:59:19.254575+00:00 [running]> on host 54578bcb1e9c
+[2021-10-29 22:59:20,448] {taskinstance.py:1414} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=example_python_operator
+AIRFLOW_CTX_TASK_ID=virtualenv_python
+AIRFLOW_CTX_EXECUTION_DATE=2021-10-29T22:59:19.254575+00:00
+AIRFLOW_CTX_DAG_RUN_ID=manual__2021-10-29T22:59:19.254575+00:00
+[2021-10-29 22:59:20,449] {process_utils.py:135} INFO - Executing cmd: /usr/local/bin/python -m virtualenv /tmp/venv6m6n8old
+[2021-10-29 22:59:20,455] {process_utils.py:139} INFO - Output:
+[2021-10-29 22:59:21,028] {process_utils.py:143} INFO - created virtual environment CPython3.6.15.final.0-64 in 374ms
+[2021-10-29 22:59:21,028] {process_utils.py:143} INFO -   creator CPython3Posix(dest=/tmp/venv6m6n8old, clear=False, no_vcs_ignore=False, global=False)
+[2021-10-29 22:59:21,029] {process_utils.py:143} INFO -   seeder FromAppData(download=False, pip=bundle, setuptools=bundle, wheel=bundle, via=copy, app_data_dir=/tmp/tmp9vovrzdz)
+[2021-10-29 22:59:21,029] {process_utils.py:143} INFO -     added seed packages: pip==21.2.4, setuptools==58.1.0, wheel==0.37.0
+[2021-10-29 22:59:21,029] {process_utils.py:143} INFO -   activators BashActivator,CShellActivator,FishActivator,NushellActivator,PowerShellActivator,PythonActivator
+[2021-10-29 22:59:21,045] {process_utils.py:135} INFO - Executing cmd: /tmp/venv6m6n8old/bin/pip install colorama==0.4.0 lazy-object-proxy
+[2021-10-29 22:59:21,050] {process_utils.py:139} INFO - Output:
+[2021-10-29 22:59:21,971] {process_utils.py:143} INFO - WARNING: The directory '/home/***/.cache/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.
+[2021-10-29 22:59:22,335] {process_utils.py:143} INFO - Collecting colorama==0.4.0
+[2021-10-29 22:59:22,520] {process_utils.py:143} INFO -   Downloading colorama-0.4.0-py2.py3-none-any.whl (21 kB)
+[2021-10-29 22:59:22,695] {process_utils.py:143} INFO - Collecting lazy-object-proxy
+[2021-10-29 22:59:22,804] {process_utils.py:143} INFO -   Downloading lazy_object_proxy-1.6.0-cp36-cp36m-manylinux1_x86_64.whl (55 kB)
+[2021-10-29 22:59:22,848] {process_utils.py:143} INFO - Installing collected packages: lazy-object-proxy, colorama
+[2021-10-29 22:59:22,914] {process_utils.py:143} INFO - Successfully installed colorama-0.4.0 lazy-object-proxy-1.6.0
+[2021-10-29 22:59:23,138] {process_utils.py:143} INFO - WARNING: You are using pip version 21.2.4; however, version 21.3.1 is available.
+[2021-10-29 22:59:23,139] {process_utils.py:143} INFO - You should consider upgrading via the '/tmp/venv6m6n8old/bin/python -m pip install --upgrade pip' command.
+[2021-10-29 22:59:23,225] {process_utils.py:135} INFO - Executing cmd: /tmp/venv6m6n8old/bin/python /tmp/venv6m6n8old/script.py /tmp/venv6m6n8old/script.in /tmp/venv6m6n8old/script.out /tmp/venv6m6n8old/string_args.txt
+[2021-10-29 22:59:23,230] {process_utils.py:139} INFO - Output:
+[2021-10-29 22:59:23,256] {process_utils.py:143} INFO - [31msome red text
+[2021-10-29 22:59:23,257] {process_utils.py:143} INFO - [42mand with a green background
+[2021-10-29 22:59:23,257] {process_utils.py:143} INFO - [2mand in dim text
+[2021-10-29 22:59:23,257] {process_utils.py:143} INFO - [0m
+[2021-10-29 22:59:23,257] {process_utils.py:143} INFO - [2mPlease wait...
+[2021-10-29 22:59:33,263] {process_utils.py:143} INFO - [2mPlease wait...
+[2021-10-29 22:59:43,271] {process_utils.py:143} INFO - [2mPlease wait...
+[2021-10-29 22:59:53,279] {process_utils.py:143} INFO - [2mPlease wait...
+[2021-10-29 23:00:03,287] {process_utils.py:143} INFO - [2mPlease wait...
+[2021-10-29 23:00:13,295] {process_utils.py:143} INFO - [2mPlease wait...
+[2021-10-29 23:00:23,303] {process_utils.py:143} INFO - [2mPlease wait...
+[2021-10-29 23:00:33,311] {process_utils.py:143} INFO - [2mPlease wait...
+[2021-10-29 23:00:43,319] {process_utils.py:143} INFO - [2mPlease wait...
+[2021-10-29 23:00:53,327] {process_utils.py:143} INFO - [2mPlease wait...
+[2021-10-29 23:01:03,335] {process_utils.py:143} INFO - Finished
+[2021-10-29 23:01:03,366] {python.py:152} INFO - Done. Returned value was: None
+[2021-10-29 23:01:03,379] {taskinstance.py:1280} INFO - Marking task as SUCCESS. dag_id=example_python_operator, task_id=virtualenv_python, execution_date=20211029T225919, start_date=20211029T225920, end_date=20211029T230103
+[2021-10-29 23:01:03,431] {local_task_job.py:154} INFO - Task exited with return code 0
+[2021-10-29 23:01:03,454] {local_task_job.py:264} INFO - 0 downstream tasks scheduled from follow-on schedule check

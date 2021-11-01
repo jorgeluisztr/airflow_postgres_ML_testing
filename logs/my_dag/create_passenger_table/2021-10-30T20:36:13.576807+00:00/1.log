@@ -1,0 +1,39 @@
+[2021-10-30 20:36:14,991] {taskinstance.py:1035} INFO - Dependencies all met for <TaskInstance: my_dag.create_passenger_table manual__2021-10-30T20:36:13.576807+00:00 [queued]>
+[2021-10-30 20:36:15,026] {taskinstance.py:1035} INFO - Dependencies all met for <TaskInstance: my_dag.create_passenger_table manual__2021-10-30T20:36:13.576807+00:00 [queued]>
+[2021-10-30 20:36:15,027] {taskinstance.py:1241} INFO - 
+--------------------------------------------------------------------------------
+[2021-10-30 20:36:15,027] {taskinstance.py:1242} INFO - Starting attempt 1 of 1
+[2021-10-30 20:36:15,027] {taskinstance.py:1243} INFO - 
+--------------------------------------------------------------------------------
+[2021-10-30 20:36:15,053] {taskinstance.py:1262} INFO - Executing <Task(PostgresOperator): create_passenger_table> on 2021-10-30 20:36:13.576807+00:00
+[2021-10-30 20:36:15,065] {standard_task_runner.py:76} INFO - Running: ['***', 'tasks', 'run', 'my_dag', 'create_passenger_table', 'manual__2021-10-30T20:36:13.576807+00:00', '--job-id', '49', '--raw', '--subdir', 'DAGS_FOLDER/checkingmodel.py', '--cfg-path', '/tmp/tmpp3x6yadg', '--error-file', '/tmp/tmpjliddqbs']
+[2021-10-30 20:36:15,066] {standard_task_runner.py:77} INFO - Job 49: Subtask create_passenger_table
+[2021-10-30 20:36:15,059] {standard_task_runner.py:52} INFO - Started process 5926 to run task
+[2021-10-30 20:36:15,145] {logging_mixin.py:109} INFO - Running <TaskInstance: my_dag.create_passenger_table manual__2021-10-30T20:36:13.576807+00:00 [running]> on host 54578bcb1e9c
+[2021-10-30 20:36:15,235] {taskinstance.py:1414} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=my_dag
+AIRFLOW_CTX_TASK_ID=create_passenger_table
+AIRFLOW_CTX_EXECUTION_DATE=2021-10-30T20:36:13.576807+00:00
+AIRFLOW_CTX_DAG_RUN_ID=manual__2021-10-30T20:36:13.576807+00:00
+[2021-10-30 20:36:15,253] {base.py:79} INFO - Using connection to: id: postgres_default. Host: 172.19.0.7, Port: 5432, Schema: , Login: ***, Password: ***, extra: {}
+[2021-10-30 20:36:15,261] {dbapi.py:225} INFO - Running statement: 
+                CREATE TABLE IF NOT EXISTS passengers (
+                    PassengerId INT,
+                    Pclass INT,
+                    Name VARCHAR(100),
+                    Sex  VARCHAR(20),
+                    Age  FLOAT,
+                    Sibsp INT,
+                    Parch INT,
+                    Ticket VARCHAR(20),
+                    Fare FLOAT,
+                    Cabin VARCHAR(10),
+                    Embarked VARCHAR(10)
+                    );
+            , parameters: None
+[2021-10-30 20:36:15,263] {postgres.py:71} INFO - NOTICE:  relation "passengers" already exists, skipping
+
+[2021-10-30 20:36:15,288] {taskinstance.py:1280} INFO - Marking task as SUCCESS. dag_id=my_dag, task_id=create_passenger_table, execution_date=20211030T203613, start_date=20211030T203614, end_date=20211030T203615
+[2021-10-30 20:36:15,322] {local_task_job.py:154} INFO - Task exited with return code 0
+[2021-10-30 20:36:15,384] {local_task_job.py:264} INFO - 1 downstream tasks scheduled from follow-on schedule check

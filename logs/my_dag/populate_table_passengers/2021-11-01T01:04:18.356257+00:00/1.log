@@ -1,0 +1,2 @@
+[2021-11-01 01:04:20,064] {taskinstance.py:1029} INFO - Dependencies not met for <TaskInstance: my_dag.populate_table_passengers manual__2021-11-01T01:04:18.356257+00:00 [queued]>, dependency 'Trigger Rule' FAILED: Task's trigger rule 'all_success' requires all upstream tasks to have succeeded, but found 1 non-success(es). upstream_tasks_state={'total': 1, 'successes': 0, 'skipped': 0, 'failed': 1, 'upstream_failed': 0, 'done': 1}, upstream_task_ids={'permissions'}
+[2021-11-01 01:04:20,067] {local_task_job.py:99} INFO - Task is not able to be run

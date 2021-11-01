@@ -1,0 +1,76 @@
+[2021-10-30 20:49:17,553] {taskinstance.py:1035} INFO - Dependencies all met for <TaskInstance: my_dag.populate_passenger_table manual__2021-10-30T20:49:14.357374+00:00 [queued]>
+[2021-10-30 20:49:17,603] {taskinstance.py:1035} INFO - Dependencies all met for <TaskInstance: my_dag.populate_passenger_table manual__2021-10-30T20:49:14.357374+00:00 [queued]>
+[2021-10-30 20:49:17,604] {taskinstance.py:1241} INFO - 
+--------------------------------------------------------------------------------
+[2021-10-30 20:49:17,604] {taskinstance.py:1242} INFO - Starting attempt 1 of 1
+[2021-10-30 20:49:17,604] {taskinstance.py:1243} INFO - 
+--------------------------------------------------------------------------------
+[2021-10-30 20:49:17,625] {taskinstance.py:1262} INFO - Executing <Task(PostgresOperator): populate_passenger_table> on 2021-10-30 20:49:14.357374+00:00
+[2021-10-30 20:49:17,637] {standard_task_runner.py:76} INFO - Running: ['***', 'tasks', 'run', 'my_dag', 'populate_passenger_table', 'manual__2021-10-30T20:49:14.357374+00:00', '--job-id', '8', '--raw', '--subdir', 'DAGS_FOLDER/checkingmodel.py', '--cfg-path', '/tmp/tmpdytk9ir3', '--error-file', '/tmp/tmp3eii78e7']
+[2021-10-30 20:49:17,639] {standard_task_runner.py:77} INFO - Job 8: Subtask populate_passenger_table
+[2021-10-30 20:49:17,632] {standard_task_runner.py:52} INFO - Started process 201 to run task
+[2021-10-30 20:49:17,711] {logging_mixin.py:109} INFO - Running <TaskInstance: my_dag.populate_passenger_table manual__2021-10-30T20:49:14.357374+00:00 [running]> on host ebed9469addd
+[2021-10-30 20:49:17,795] {taskinstance.py:1414} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=my_dag
+AIRFLOW_CTX_TASK_ID=populate_passenger_table
+AIRFLOW_CTX_EXECUTION_DATE=2021-10-30T20:49:14.357374+00:00
+AIRFLOW_CTX_DAG_RUN_ID=manual__2021-10-30T20:49:14.357374+00:00
+[2021-10-30 20:49:17,812] {base.py:79} INFO - Using connection to: id: postgres_default. Host: 172.22.0.2, Port: 5432, Schema: , Login: ***, Password: ***, extra: {}
+[2021-10-30 20:49:17,818] {dbapi.py:225} INFO - Running statement: 
+            COPY passengers
+            FROM '/home/cosmicfox/PycharmProjects/sql_air_flow/dags/test.csv'
+            DELIMITER ','
+            CSV HEADER;
+        , parameters: None
+[2021-10-30 20:49:17,820] {taskinstance.py:1686} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/taskinstance.py", line 1324, in _run_raw_task
+    self._execute_task_with_callbacks(context)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/taskinstance.py", line 1443, in _execute_task_with_callbacks
+    result = self._execute_task(context, self.task)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/taskinstance.py", line 1499, in _execute_task
+    result = execute_callable(context=context)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/providers/postgres/operators/postgres.py", line 69, in execute
+    self.hook.run(self.sql, self.autocommit, parameters=self.parameters)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/hooks/dbapi.py", line 205, in run
+    self._run_command(cur, sql_statement, parameters)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/hooks/dbapi.py", line 229, in _run_command
+    cur.execute(sql_statement)
+psycopg2.errors.UndefinedFile: could not open file "/home/cosmicfox/PycharmProjects/sql_air_flow/dags/test.csv" for reading: No such file or directory
+HINT:  COPY FROM instructs the PostgreSQL server process to read a file. You may want a client-side facility such as psql's \copy.
+
+[2021-10-30 20:49:17,844] {taskinstance.py:1280} INFO - Marking task as FAILED. dag_id=my_dag, task_id=populate_passenger_table, execution_date=20211030T204914, start_date=20211030T204917, end_date=20211030T204917
+[2021-10-30 20:49:17,870] {standard_task_runner.py:91} ERROR - Failed to execute job 8 for task populate_passenger_table
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/task/task_runner/standard_task_runner.py", line 85, in _start_by_fork
+    args.func(args, dag=self.dag)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/cli/cli_parser.py", line 48, in command
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/utils/cli.py", line 92, in wrapper
+    return f(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/cli/commands/task_command.py", line 292, in task_run
+    _run_task_by_selected_method(args, dag, ti)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/cli/commands/task_command.py", line 107, in _run_task_by_selected_method
+    _run_raw_task(args, ti)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/cli/commands/task_command.py", line 184, in _run_raw_task
+    error_file=args.error_file,
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/utils/session.py", line 70, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/taskinstance.py", line 1324, in _run_raw_task
+    self._execute_task_with_callbacks(context)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/taskinstance.py", line 1443, in _execute_task_with_callbacks
+    result = self._execute_task(context, self.task)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/taskinstance.py", line 1499, in _execute_task
+    result = execute_callable(context=context)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/providers/postgres/operators/postgres.py", line 69, in execute
+    self.hook.run(self.sql, self.autocommit, parameters=self.parameters)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/hooks/dbapi.py", line 205, in run
+    self._run_command(cur, sql_statement, parameters)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/hooks/dbapi.py", line 229, in _run_command
+    cur.execute(sql_statement)
+psycopg2.errors.UndefinedFile: could not open file "/home/cosmicfox/PycharmProjects/sql_air_flow/dags/test.csv" for reading: No such file or directory
+HINT:  COPY FROM instructs the PostgreSQL server process to read a file. You may want a client-side facility such as psql's \copy.
+
+[2021-10-30 20:49:17,895] {local_task_job.py:154} INFO - Task exited with return code 1
+[2021-10-30 20:49:17,963] {local_task_job.py:264} INFO - 0 downstream tasks scheduled from follow-on schedule check

@@ -1,0 +1,85 @@
+[2021-11-01 02:22:02,671] {taskinstance.py:1035} INFO - Dependencies all met for <TaskInstance: my_dag.readcsv manual__2021-11-01T02:22:00.358686+00:00 [queued]>
+[2021-11-01 02:22:02,681] {taskinstance.py:1035} INFO - Dependencies all met for <TaskInstance: my_dag.readcsv manual__2021-11-01T02:22:00.358686+00:00 [queued]>
+[2021-11-01 02:22:02,681] {taskinstance.py:1241} INFO - 
+--------------------------------------------------------------------------------
+[2021-11-01 02:22:02,681] {taskinstance.py:1242} INFO - Starting attempt 1 of 1
+[2021-11-01 02:22:02,681] {taskinstance.py:1243} INFO - 
+--------------------------------------------------------------------------------
+[2021-11-01 02:22:02,701] {taskinstance.py:1262} INFO - Executing <Task(PythonOperator): readcsv> on 2021-11-01 02:22:00.358686+00:00
+[2021-11-01 02:22:02,726] {standard_task_runner.py:52} INFO - Started process 2384 to run task
+[2021-11-01 02:22:02,729] {standard_task_runner.py:76} INFO - Running: ['***', 'tasks', 'run', 'my_dag', 'readcsv', 'manual__2021-11-01T02:22:00.358686+00:00', '--job-id', '88', '--raw', '--subdir', 'DAGS_FOLDER/checkModel.py', '--cfg-path', '/tmp/tmpsfctfqsi', '--error-file', '/tmp/tmpwbx4tw7o']
+[2021-11-01 02:22:02,730] {standard_task_runner.py:77} INFO - Job 88: Subtask readcsv
+[2021-11-01 02:22:02,760] {logging_mixin.py:109} INFO - Running <TaskInstance: my_dag.readcsv manual__2021-11-01T02:22:00.358686+00:00 [running]> on host 93c37aa78767
+[2021-11-01 02:22:02,795] {taskinstance.py:1429} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=my_dag
+AIRFLOW_CTX_TASK_ID=readcsv
+AIRFLOW_CTX_EXECUTION_DATE=2021-11-01T02:22:00.358686+00:00
+AIRFLOW_CTX_DAG_RUN_ID=manual__2021-11-01T02:22:00.358686+00:00
+[2021-11-01 02:22:02,809] {taskinstance.py:1703} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/taskinstance.py", line 1332, in _run_raw_task
+    self._execute_task_with_callbacks(context)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/taskinstance.py", line 1458, in _execute_task_with_callbacks
+    result = self._execute_task(context, self.task)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/taskinstance.py", line 1514, in _execute_task
+    result = execute_callable(context=context)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 151, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 162, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/checkModel.py", line 25, in readCsv
+    df.to_sql('passengers', con=engine)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/core/generic.py", line 2882, in to_sql
+    method=method,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 728, in to_sql
+    **engine_kwargs,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 1758, in to_sql
+    dtype=dtype,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 1650, in prep_table
+    table.create()
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 858, in create
+    raise ValueError(f"Table '{self.name}' already exists.")
+ValueError: Table 'passengers' already exists.
+[2021-11-01 02:22:02,820] {taskinstance.py:1280} INFO - Marking task as FAILED. dag_id=my_dag, task_id=readcsv, execution_date=20211101T022200, start_date=20211101T022202, end_date=20211101T022202
+[2021-11-01 02:22:02,830] {standard_task_runner.py:91} ERROR - Failed to execute job 88 for task readcsv
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/task/task_runner/standard_task_runner.py", line 85, in _start_by_fork
+    args.func(args, dag=self.dag)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/cli/cli_parser.py", line 48, in command
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/utils/cli.py", line 92, in wrapper
+    return f(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/cli/commands/task_command.py", line 292, in task_run
+    _run_task_by_selected_method(args, dag, ti)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/cli/commands/task_command.py", line 107, in _run_task_by_selected_method
+    _run_raw_task(args, ti)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/cli/commands/task_command.py", line 184, in _run_raw_task
+    error_file=args.error_file,
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/utils/session.py", line 70, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/taskinstance.py", line 1332, in _run_raw_task
+    self._execute_task_with_callbacks(context)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/taskinstance.py", line 1458, in _execute_task_with_callbacks
+    result = self._execute_task(context, self.task)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/models/taskinstance.py", line 1514, in _execute_task
+    result = execute_callable(context=context)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 151, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 162, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/checkModel.py", line 25, in readCsv
+    df.to_sql('passengers', con=engine)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/core/generic.py", line 2882, in to_sql
+    method=method,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 728, in to_sql
+    **engine_kwargs,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 1758, in to_sql
+    dtype=dtype,
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 1650, in prep_table
+    table.create()
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/sql.py", line 858, in create
+    raise ValueError(f"Table '{self.name}' already exists.")
+ValueError: Table 'passengers' already exists.
+[2021-11-01 02:22:02,861] {local_task_job.py:154} INFO - Task exited with return code 1
+[2021-11-01 02:22:02,891] {local_task_job.py:264} INFO - 0 downstream tasks scheduled from follow-on schedule check
