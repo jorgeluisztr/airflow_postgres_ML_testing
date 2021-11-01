@@ -16,7 +16,7 @@ def createTable(ah=AIRFLOW_HOME):
     :param ah:  the path where are the dags, logs, plugins and my data
     :return: a sql table with test data in airflow database
     """
-    engine = create_engine('postgresql://' + "airflow" + ':' + "airflow" + '@' + "172.23.0.3" + ':' + "5432" + '/' + "airflow")
+    engine = create_engine('postgresql://' + "airflow" + ':' + "airflow" + '@' + "your_ip" + ':' + "5432" + '/' + "airflow")
     df = pd.read_csv("{ah}/mydata/test.csv".format(ah=ah))
     df.to_sql('passengers', con=engine, if_exists='append', index=False)
 
