@@ -31,7 +31,7 @@ def process_data(ah = AIRFLOW_HOME):
     # the logistic regression model
     model = pickle.load(open("{ah}/mydata/logistic_regression.pickle".format(ah=ah), "rb"))
     # engine for connection to postgres
-    engine = create_engine('postgresql://' + "airflow" + ':' + "airflow" + '@' + "172.23.0.3" + ':' + "5432" + '/' + "airflow")
+    engine = create_engine('postgresql://' + "airflow" + ':' + "airflow" + '@' + "your_ip" + ':' + "5432" + '/' + "airflow")
     # read data
     df = pd.read_sql_query('select * from passengers', con=engine)
     # transform age column with an ageband
@@ -85,7 +85,7 @@ def results():
 
     :return: show the results
     """
-    engine = create_engine('postgresql://' + "airflow" + ':' + "airflow" + '@' + "172.23.0.3" + ':' + "5432" + '/' + "airflow")
+    engine = create_engine('postgresql://' + "airflow" + ':' + "airflow" + '@' + "your_ip" + ':' + "5432" + '/' + "airflow")
     df = pd.read_sql_query('select * from results', con=engine)
     print(df.head())
 
