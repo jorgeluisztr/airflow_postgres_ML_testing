@@ -7,7 +7,7 @@
 run ```curl -LfO 'https://airflow.apache.org/docs/apache-airflow/2.2.1/docker-compose.yaml'```
 
 #### Step 2
-Replace the docker-compose.yaml with this one 
+Replace the docker-compose.yaml and the dags folder with these ones 
 
 
 #### Step 3
